@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -16,13 +16,13 @@
             
 	<!-- 扫描service、dao组件 -->
 	<context:component-scan
-		base-package="us.xuhang.project.service,us.xuhang.project.dao" />
-		
+		base-package="com.project.service,com.project.dao" />
+	
 	<!-- 分解配置 jdbc.properites -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	
 	<!-- 数据源 -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClass" value="${jdbc.driverClassName}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
@@ -51,9 +51,4 @@
 			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
-	<aop:config>
-		<aop:pointcut expression="execution(* us.xuhang.project.service.*.*(..))"
-			id="pointCut" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />
-	</aop:config>
 </beans>            
