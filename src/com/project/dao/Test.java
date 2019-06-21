@@ -21,6 +21,9 @@ public class Test extends User{
 		System.out.println("test");
 	}
 	public static void main(String[]args) throws ParseException{
+		String string = "1 & ";
+		string.replace("& ", "");
+		System.out.println(string);
 //		TimeZone timeZone = TimeZone.getTimeZone("EST");
 //		System.out.println(timeZone);
 //		Calendar localCalendar = Calendar.getInstance();
